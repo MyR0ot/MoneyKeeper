@@ -6,61 +6,149 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CreateTransactionActivity"
-    android:padding="18dp">
+    android:padding="25dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/light_blue"
+        android:padding="12dp"
         >
 
+
+
+            <RadioGroup
+                android:checkedButton="@+id/calm"
+                android:id="@+id/toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/control_switch_background_border"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:id="@+id/calm"
+                    android:background="@drawable/control_switch_background_selector_middle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Expense"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/control_switch_color_selector"/>
+                <RadioButton
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:id="@+id/rumor"
+                    android:background="@drawable/control_switch_background_selector_middle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Income"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/control_switch_color_selector"/>
+            </RadioGroup>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_switch_to_expense"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expense"
+                android:text="Date: "
                 />
-            <Button
-                android:id="@+id/btn_switch_to_income"
-                android:layout_width="wrap_content"
+
+            <TextView
+                android:id="@+id/et_calendar"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Income"
+                android:gravity="end"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 />
-
-
-
-
         </LinearLayout>
-        <EditText
-            android:id="@+id/et_calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text = "CALENDAR"
-            android:gravity="center"/>
 
-        <!-- TODO:  Выпадающий список категорий -->
-        <EditText
-            android:id="@+id/et_sum"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sum"
-            android:gravity="center"/>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/et_note"
+            <TextView
+                android:id="@+id/tv_title_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Category: "
+                />
+
+            <Spinner
+                android:id="@+id/sp_category_chooser"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Note"
-            android:gravity="center"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value: "/>
+
+            <EditText
+                android:id="@+id/et_sum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note: "/>
+
+            <EditText
+                android:id="@+id/et_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:gravity="start"/>
+        </LinearLayout>
+
 
     </LinearLayout>
+
 
 
     <LinearLayout
@@ -70,11 +158,13 @@
         android:layout_gravity="center">
 
         <Button
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="cancel" />
 
         <Button
+            android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save" />
