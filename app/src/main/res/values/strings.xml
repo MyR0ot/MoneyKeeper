@@ -9,4 +9,7 @@
     <string name="setup_passcode">Setup Pin</string>
     <string name="passcode_wrong">Wrong Pin, please try again</string>
     <string name="enable_wrong">Enable Pin</string>
+
+
+    <string name="flag_of_county" translatable="false">flag of county</string>
 </resources>

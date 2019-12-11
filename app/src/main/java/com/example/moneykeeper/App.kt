@@ -11,4 +11,7 @@ class App : Application() {
 
         println("start App.kt")
     }
+
+
+
 }

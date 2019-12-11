@@ -12,14 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/light_blue"
+        android:background="@drawable/back_card"
         android:padding="12dp"
         >
-
-
-
             <RadioGroup
-                android:checkedButton="@+id/calm"
+                android:checkedButton="@+id/sw_create_income"
                 android:id="@+id/toggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,28 +27,13 @@
                 android:background="@drawable/control_switch_background_border"
                 android:orientation="horizontal">
                 <RadioButton
+                    android:id="@+id/sw_create_income"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginLeft="3dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:id="@+id/calm"
-                    android:background="@drawable/control_switch_background_selector_middle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Expense"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/control_switch_color_selector"/>
-                <RadioButton
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
-                    android:id="@+id/rumor"
-                    android:background="@drawable/control_switch_background_selector_middle"
+                    android:background="@drawable/control_switch_background_selector"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -60,6 +42,24 @@
                     android:text="Income"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/control_switch_color_selector"/>
+
+
+                <RadioButton
+                    android:id="@+id/sw_create_expense"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="3dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/control_switch_background_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Expense"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/control_switch_color_selector" />
             </RadioGroup>
 
         <LinearLayout
@@ -97,7 +97,7 @@
 
             <Spinner
                 android:id="@+id/sp_category_chooser"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textSize="20sp"
@@ -155,18 +155,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cancel" />
+            android:background="@drawable/my_button"
+            android:text="cancel"
+            android:layout_marginRight="8dp"/>
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/my_button"
             android:text="Save" />
     </LinearLayout>
 

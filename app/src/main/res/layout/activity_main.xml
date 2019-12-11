@@ -4,16 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="18dp"
-
+    android:padding="10dp"
     tools:context=".MainActivity">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        android:background="@color/light_grey">
+        android:background="@drawable/back_card"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="MoneyKeeper"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:layout_marginBottom="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +39,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="0"/>
+                android:text="0"
+                android:textColor="@color/colorGreen"/>
         </LinearLayout>
 
         <LinearLayout
@@ -44,13 +56,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="0"/>
+                android:text="0"
+                android:textColor="@color/colorRed"/>
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/divider" />
 
         <LinearLayout
@@ -69,20 +82,22 @@
                 android:text="0"/>
         </LinearLayout>
 
-
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_detailed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="show detailed"/>
+        android:text="show detailed"
+        android:background="@drawable/my_button"
+        android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/btn_add_transaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="add transaction"/>
+        android:text="add transaction"
+        android:background="@drawable/my_button"/>
 
     <!-- TODO: kill this -->
     <Button
