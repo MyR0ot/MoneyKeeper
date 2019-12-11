@@ -16,21 +16,24 @@ class MainActivity : LockActivity (), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bt_on_off.setOnClickListener(this)
-        bt_change.setOnClickListener(this)
-        bt_change.setText(R.string.change_passcode)
+        btn_on_off.setOnClickListener(this) // TODO: kill this
+        btn_change.setOnClickListener(this) // TODO: kill this
+        btn_change.setText(R.string.change_passcode) // TODO: kill this
 
+        println("start MainActivity.kt")
         updateUI()
+
+        loadRouting()
     }
 
     override fun onClick(v: View) {
-        if(v == bt_on_off){
-            val type = if(AppLocker.getInstance().appLock.isPasscodeSet) Locker.DISABLE_PASSLOCK else Locker.CHANGE_PASSWORD
+        if(v == btn_on_off){
+            val type = if(AppLocker.getInstance().appLock.isPasscodeSet) Locker.DISABLE_PASSLOCK else Locker.ENABLE_PASSLOCK
             Intent(this@MainActivity, LockActivity::class.java).also {
                 it.putExtra(Locker.TYPE, type)
                 startActivityForResult(it, type)
             }
-        } else if(v == bt_change) {
+        } else if(v == btn_change) {
             Intent(this@MainActivity, LockActivity::class.java).also {
                 it.putExtra(Locker.TYPE, Locker.CHANGE_PASSWORD)
                 it.putExtra(Locker.MESSAGE, getString(R.string.enter_old_passcode))
@@ -51,9 +54,7 @@ class MainActivity : LockActivity (), View.OnClickListener {
                 }
 
             }
-            else -> { // обратите внимание на блок
-                print("x is neither 1 nor 2")
-            }
+
         }
 
         updateUI()
@@ -62,12 +63,28 @@ class MainActivity : LockActivity (), View.OnClickListener {
 
     private fun updateUI(): Unit {
         if(AppLocker.getInstance().appLock.isPasscodeSet){
-            bt_on_off.setText(R.string.disable_passcode)
-            bt_change.isEnabled = true
+            btn_on_off.setText(R.string.disable_passcode)
+            btn_change.isEnabled = true
         } else {
-            bt_on_off.setText(R.string.enable_passcode)
-            bt_change.isEnabled = false
+            btn_on_off.setText(R.string.enable_passcode)
+            btn_change.isEnabled = false
         }
+    }
+
+    private fun loadRouting(): Unit {
+
+        btn_add_transaction.setOnClickListener {
+            Intent(this@MainActivity, CreateTransactionActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        btn_detailed.setOnClickListener {
+            Intent(this@MainActivity, DetailedActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
     }
 
 
