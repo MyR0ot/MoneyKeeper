@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Income"/>
+                android:text="@string/income"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expensive"/>
+                android:text="@string/expense"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total"/>
+                android:text="@string/total"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -102,7 +102,7 @@
             android:id="@+id/btn_detailed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="show detailed"
+            android:text="@string/show_detailed"
             android:background="@drawable/my_button"
             android:layout_marginBottom="8dp"/>
 
@@ -110,7 +110,7 @@
             android:id="@+id/btn_add_transaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add transaction"
+            android:text="@string/add_transaction"
             android:background="@drawable/my_button"
             android:layout_marginBottom="8dp"
             />
@@ -120,14 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/my_button"
-            android:text="Settings"/>
-
+            android:text="@string/settings"/>
     </LinearLayout>
-
-
-    <!-- TODO: kill this -->
-
-
 
 
     <LinearLayout
@@ -142,19 +136,36 @@
             android:id="@+id/tv_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/settings"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="22sp"
             android:layout_marginBottom="4dp"/>
 
-        <Button
-            android:id="@+id/btn_change_language"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/my_button"
-            android:layout_marginBottom="8dp"
-            android:text="language"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btn_change_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_button"
+                android:padding="8dp"
+                android:text="@string/change_language"
+                android:layout_marginRight="10dp"/>
+
+            <ImageView
+                android:id="@+id/iv_language_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/flag_of_county"/>
+
+        </LinearLayout>
+
 
 
         <Button

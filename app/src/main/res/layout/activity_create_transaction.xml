@@ -39,7 +39,7 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="Income"
+                    android:text="@string/income"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/control_switch_color_selector"/>
 
@@ -57,7 +57,7 @@
                     android:background="@drawable/control_switch_background_selector"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="Expense"
+                    android:text="@string/expense"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/control_switch_color_selector" />
             </RadioGroup>
@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date: "
+                android:text="@string/date"
                 />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:id="@+id/tv_title_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Category: "
+                android:text="@string/category"
                 />
 
             <Spinner
@@ -114,7 +114,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Value: "/>
+                android:text="@string/value"/>
 
             <EditText
                 android:id="@+id/et_sum"
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Note: "/>
+                android:text="@string/note"/>
 
             <EditText
                 android:id="@+id/et_note"
@@ -163,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/my_button"
-            android:text="cancel"
+            android:text="@string/cancel"
             android:layout_marginRight="8dp"/>
 
         <Button
@@ -171,7 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/my_button"
-            android:text="Save" />
+            android:text="@string/save" />
     </LinearLayout>
 
 

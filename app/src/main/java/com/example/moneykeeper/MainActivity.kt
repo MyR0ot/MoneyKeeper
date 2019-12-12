@@ -2,6 +2,8 @@ package com.example.moneykeeper
 
 import android.app.ActionBar
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -12,17 +14,24 @@ import com.balram.locker.view.LockActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.animation.Animation
 import android.view.animation.Transformation
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.ConfigurationCompat
+import com.example.cinemahelper.utils.LocaleChecker
+import java.util.*
 
 
 class MainActivity : LockActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadLocale()
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_main)
+
+        configChangeLanguage()
 
         btn_on_off.setOnClickListener(this) // TODO: kill this
         btn_change.setOnClickListener(this) // TODO: kill this
@@ -160,6 +169,47 @@ class MainActivity : LockActivity(), View.OnClickListener {
         // Collapse speed of 1dp/ms
         a.duration = (initialHeight / v.context.resources.displayMetrics.density).toInt().toLong()
         v.startAnimation(a)
+    }
+
+
+    private fun configChangeLanguage(): Unit {
+        val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
+        if(currentLocale.language == "ru"){
+            iv_language_icon.setImageResource(R.drawable.ru)
+        } else {
+            iv_language_icon.setImageResource(R.drawable.us)
+        }
+
+        iv_language_icon.setOnClickListener{ changeLanguage() }
+        btn_change_language.setOnClickListener{ changeLanguage() }
+    }
+
+    private fun changeLanguage(): Unit {
+        if(LocaleChecker.isRussianLocale(this)){
+            setLocale("en")
+        } else setLocale("ru")
+        recreate()
+    }
+
+    private fun setLocale(lang: String):Unit {
+        val locale: Locale = Locale(lang)
+        Locale.setDefault(locale)
+        val conf = Configuration()
+        conf.locale = locale
+        baseContext.resources.updateConfiguration(conf, baseContext.resources.displayMetrics)
+        val editor: SharedPreferences.Editor = getSharedPreferences("Settings",
+            AppCompatActivity.MODE_PRIVATE
+        ).edit()
+        editor.putString("language", lang)
+        editor.apply()
+    }
+
+    private fun loadLocale(){
+        val prefs: SharedPreferences = getSharedPreferences("Settings",
+            AppCompatActivity.MODE_PRIVATE
+        )
+        val language: String? = prefs.getString("language", "ru")
+        language?.let { setLocale(it) }
     }
 
 
