@@ -10,6 +10,7 @@
     <color name="colorCardBorder">#de7672</color>
     <color name="colorGreen">#00bb00</color>
     <color name="colorRed">#ee0000</color>
+    <color name="colorLightGrey">#ebebeb</color>
     <color name="controlBackground">#ffffffff</color>
 
 </resources>
