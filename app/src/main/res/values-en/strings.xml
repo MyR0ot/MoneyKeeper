@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">MoneyKeeper</string>
     <string name="change_passcode">Change Pin</string>
-    <string name="enable_wrong">Enable Pin</string>
+    <string name="enable_passcode">Enable Pin</string>
     <string name="enter_old_passcode">Enter old Pin</string>
     <string name="enter_passcode">Enter Pin</string>
     <string name="manage_passcode">Manage Pin</string>
@@ -24,4 +24,5 @@
     <string name="save">Save</string>
     <string name="flag_of_county">Country flag</string>
     <string name="date">Date:</string>
+    <string name="disable_passcode">Disable Pin</string>
 </resources>

@@ -2,17 +2,17 @@
 <resources>
     <string name="app_name">MoneyKeeper</string>
     <string name="change_passcode">Изменить пароль</string>
-    <string name="enable_wrong">Установить пароль</string>
+    <string name="enable_passcode">Установить пароль</string>
     <string name="enter_old_passcode">Введите старый пароль</string>
     <string name="enter_passcode">Введите пароль</string>
     <string name="passcode_wrong">Неверный пароль, попробуйте еще раз</string>
     <string name="reenter_passcode">Повторите пароль</string>
-    <string name="setup_passcode">Установите пароль</string>
+    <string name="setup_passcode">Пароль установлен</string>
     <string name="income">Доход</string>
     <string name="expense">Расход</string>
     <string name="total">Итого</string>
     <string name="show_detailed">История</string>
-    <string name="manage_passcode">"Manage "</string>
+    <string name="manage_passcode">Пароль изменен</string>
     <string name="add_transaction">Добавить запись</string>
     <string name="settings">Настройки</string>
     <string name="change_language">Изменить язык</string>
@@ -24,4 +24,5 @@
     <string name="save">Сохранить</string>
     <string name="flag_of_county">Флаг страны</string>
     <string name="date">Дата:</string>
+    <string name="disable_passcode">Убрать пароль</string>
 </resources>
