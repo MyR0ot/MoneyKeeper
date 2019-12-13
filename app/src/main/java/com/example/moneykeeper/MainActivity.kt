@@ -17,10 +17,13 @@ import android.view.animation.Transformation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.ConfigurationCompat
 import com.example.cinemahelper.utils.LocaleChecker
+import com.example.moneykeeper.utils.DBHelper
 import java.util.*
 
 
 class MainActivity : LockActivity(), View.OnClickListener {
+
+    internal lateinit var db: DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +34,17 @@ class MainActivity : LockActivity(), View.OnClickListener {
         )
         setContentView(R.layout.activity_main)
 
+        db = DBHelper(this@MainActivity)
+
         configChangeLanguage()
 
-        btn_on_off.setOnClickListener(this) // TODO: kill this
-        btn_change.setOnClickListener(this) // TODO: kill this
-        btn_change.setText(R.string.change_passcode)    // TODO: kill this
-
-
+        btn_on_off.setOnClickListener(this)
+        btn_change.setOnClickListener(this)
+        btn_change.setText(R.string.change_passcode)
         l_settings.visibility = View.GONE
         updateUI()
         loadRouting()
+        refreshData()
     }
 
     override fun onClick(v: View) {
@@ -79,6 +83,17 @@ class MainActivity : LockActivity(), View.OnClickListener {
         updateUI()
     }
 
+
+    private fun refreshData(){
+        val transactions = db.allTransactions
+        val total = transactions.map { it.value }.sum()
+        val expenditures = transactions.filter { it.value < 0 }.map { it.value }.sum()
+        val revenue = transactions.filter { it.value > 0 }.map { it.value }.sum()
+
+        tv_total.text = total.toString()
+        tv_expenditures.text = expenditures.toString()
+        tv_revenue.text = revenue.toString()
+    }
 
     private fun updateUI(): Unit {
         if (AppLocker.getInstance().appLock.isPasscodeSet) {

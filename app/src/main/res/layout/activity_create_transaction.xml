@@ -16,7 +16,7 @@
         android:padding="12dp"
         >
             <RadioGroup
-                android:checkedButton="@+id/sw_create_income"
+                android:checkedButton="@+id/sw_create_expense"
                 android:id="@+id/toggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,8 +26,10 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/control_switch_background_border"
                 android:orientation="horizontal">
+
+
                 <RadioButton
-                    android:id="@+id/sw_create_income"
+                    android:id="@+id/sw_create_expense"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginLeft="3dp"
@@ -39,13 +41,14 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="@string/income"
+                    android:text="@string/expense"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/control_switch_color_selector"/>
 
 
+
                 <RadioButton
-                    android:id="@+id/sw_create_expense"
+                    android:id="@+id/sw_create_income"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginRight="3dp"
@@ -57,9 +60,10 @@
                     android:background="@drawable/control_switch_background_selector"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="@string/expense"
+                    android:text="@string/income"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/control_switch_color_selector" />
+
             </RadioGroup>
 
         <LinearLayout
@@ -117,7 +121,7 @@
                 android:text="@string/value"/>
 
             <EditText
-                android:id="@+id/et_sum"
+                android:id="@+id/et_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"

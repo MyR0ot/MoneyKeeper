@@ -7,13 +7,16 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.example.moneykeeper.utils.DBHelper
 import kotlinx.android.synthetic.main.activity_create_transaction.*
+import kotlinx.android.synthetic.main.transaction_list_item.*
 import java.util.*
 
 
 class CreateTransactionActivity : AppCompatActivity() {
 
 
+    internal lateinit var db: DBHelper
     private val categories = arrayOf("другие", "еда", "транспорт", "здоровье", "путешествия", "подарки", "отдых", "face palm")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +24,7 @@ class CreateTransactionActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_create_transaction)
 
+        db = DBHelper(this@CreateTransactionActivity)
         initRouting()
         initCalendar()
         initSpinner()
@@ -46,8 +50,9 @@ class CreateTransactionActivity : AppCompatActivity() {
         }
     }
 
-    private fun getToday(): String { // TODO: получить текущий день
-        return "" + 1 + " " + getMonthName(0) + ", " + 2019
+    private fun getToday(): String {
+        val date = Date()
+        return "" + date.date + " " + getMonthName(date.month ) + ", " + (date.year + 1900)
     }
 
     private fun initRouting(){
@@ -57,7 +62,17 @@ class CreateTransactionActivity : AppCompatActivity() {
         }
 
         btn_save.setOnClickListener {
-            // TODO: создать транзакцию
+
+            val id = db.getNextId()
+            val date = et_calendar.text.toString()
+            val category = sp_category_chooser.selectedItem.toString()
+            val note = et_note.text.toString()
+            var value = et_value.text.toString().toInt()
+            if(sw_create_expense.isActivated) value = -value;
+            val transaction = Transaction(id, date, category, value, note)
+
+            db.addTransaction(transaction)
+            // TODO: вернуться к первому активити без PIN CODE
             finish()
         }
 
@@ -76,9 +91,7 @@ class CreateTransactionActivity : AppCompatActivity() {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View,
                 position: Int, id: Long
-            ) {
-                // TODO:
-            }
+            ) { }
 
             override fun onNothingSelected(arg0: AdapterView<*>) {
                 sp_category_chooser.setSelection(0)

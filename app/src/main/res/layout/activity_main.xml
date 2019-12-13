@@ -44,6 +44,7 @@
                 android:text="@string/income"/>
 
             <TextView
+                android:id="@+id/tv_revenue"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -61,6 +62,7 @@
                 android:text="@string/expense"/>
 
             <TextView
+                android:id="@+id/tv_expenditures"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -84,6 +86,7 @@
                 android:text="@string/total"/>
 
             <TextView
+                android:id="@+id/tv_total"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
