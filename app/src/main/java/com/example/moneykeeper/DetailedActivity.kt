@@ -3,13 +3,10 @@ package com.example.moneykeeper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cinemahelper.utils.LocaleChecker
 import com.example.moneykeeper.utils.DBHelper
 import kotlinx.android.synthetic.main.activity_detailed.*
-import java.util.*
 
 class DetailedActivity : AppCompatActivity() {
 

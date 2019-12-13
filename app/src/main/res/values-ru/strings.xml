@@ -26,4 +26,5 @@
     <string name="date">Дата:</string>
     <string name="disable_passcode">Убрать пароль</string>
     <string name="delete">Удалить</string>
+    <string name="transactions">Транзакции</string>
 </resources>
