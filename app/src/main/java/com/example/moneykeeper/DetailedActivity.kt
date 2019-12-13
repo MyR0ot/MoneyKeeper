@@ -13,16 +13,8 @@ import java.util.*
 
 class DetailedActivity : AppCompatActivity() {
 
-
     internal lateinit var db: DBHelper
-    internal var transactions = listOf(
-        Transaction(0, "09 декабря, 2019", "category1", 5000, "ezy 5k"),
-        Transaction(0, "10 декабря, 2019", "category2", -3000, "bla bla bla"),
-        Transaction(1, "11 декабря, 2019", "category2", -150, "taxi"),
-        Transaction(2, "11 декабря, 2019", "category3", -22, "Маршрутка"),
-        Transaction(3, "12 декабря, 2019", "category4", 1500, "Подарок")
-    )
-
+    private lateinit var transactions: List<Transaction>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,34 +22,42 @@ class DetailedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detailed)
 
         db = DBHelper(this@DetailedActivity)
-        refreshData()
-    }
-
-    private fun refreshData() {
         transactions = db.allTransactions
-        configureRecyclerView()
+        configureRecyclerView(transactions)
+
+
+        toggle.setOnCheckedChangeListener { group, checkedId ->
+            run {
+                if (checkedId == sw_filter_all.id) {
+                    configureRecyclerView(transactions)
+                } else if (checkedId == sw_filter_expense.id) {
+                    configureRecyclerView(transactions.filter { it.value < 0 })
+                } else {
+                    configureRecyclerView(transactions.filter { it.value > 0 })
+                }
+            }
+        }
     }
 
 
-    private fun configureRecyclerView(): Unit {
+    private fun configureRecyclerView(transactions: List<Transaction>): Unit {
         val layoutManager: RecyclerView.LayoutManager =
             LinearLayoutManager(this@DetailedActivity) // последовательное отображение сверху вниз
         rv_transactions.layoutManager = layoutManager
         rv_transactions.setHasFixedSize(true)
         rv_transactions.adapter = TransactionsAdapter(transactions, object : TransactionsAdapter.Callback {
             override fun onItemClicked(item: Transaction) {
-                // TODO: Click by transaction (edit/delete)
+                // TODO: Click by transaction
+            }
+
+            override fun onDelete(item: Transaction){
+                db.deleteTransaction(item)
+                this@DetailedActivity.transactions = db.allTransactions
+                configureRecyclerView(this@DetailedActivity.transactions)
             }
         })
-
-
-        rv_transactions.addItemDecoration(
-            DividerItemDecoration(
-                this@DetailedActivity,
-                DividerItemDecoration.VERTICAL
-            )
-        )
     }
+
 
 
 }

@@ -47,6 +47,11 @@ class MainActivity : LockActivity(), View.OnClickListener {
         refreshData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        refreshData()
+    }
+
     override fun onClick(v: View) {
         if (v == btn_on_off) {
             val type =
@@ -90,9 +95,9 @@ class MainActivity : LockActivity(), View.OnClickListener {
         val expenditures = transactions.filter { it.value < 0 }.map { it.value }.sum()
         val revenue = transactions.filter { it.value > 0 }.map { it.value }.sum()
 
-        tv_total.text = total.toString()
-        tv_expenditures.text = expenditures.toString()
-        tv_revenue.text = revenue.toString()
+        tv_total.text = total.toString() + "\u20BD"
+        tv_expenditures.text = expenditures.toString() +"\u20BD"
+        tv_revenue.text = revenue.toString() +"\u20BD"
     }
 
     private fun updateUI(): Unit {

@@ -1,10 +1,13 @@
 package com.example.moneykeeper
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.abs
 
 class TransactionsAdapter(var items: List<Transaction>, val callback: Callback):RecyclerView.Adapter<TransactionsAdapter.TransactionViewHolder>() {
 
@@ -24,13 +27,21 @@ class TransactionsAdapter(var items: List<Transaction>, val callback: Callback):
         private val category = itemView.findViewById<TextView>(R.id.tv_category)
         private val value = itemView.findViewById<TextView>(R.id.tv_value)
         private val note = itemView.findViewById<TextView>(R.id.tv_note)
+        private val btnDelete = itemView.findViewById<Button>(R.id.b_delete)
 
 
         fun bind(transaction: Transaction) {
+            if(transaction.value > 0) value.setTextColor(Color.rgb(0,186,0))
+            else value.setTextColor(Color.rgb(237,0,0))
+
             date.text = transaction.date
             category.text = transaction.category
-            value.text = transaction.value.toString()
+            value.text = abs(transaction.value).toString()+"\u20BD"
             note.text = transaction.note
+
+            btnDelete.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) callback.onDelete(transaction)
+            }
 
 
             itemView.setOnClickListener {
@@ -42,6 +53,7 @@ class TransactionsAdapter(var items: List<Transaction>, val callback: Callback):
 
     interface Callback {
         fun onItemClicked(item: Transaction)
+        fun onDelete(item: Transaction)
     }
 
 

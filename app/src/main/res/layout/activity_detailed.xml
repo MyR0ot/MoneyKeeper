@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailedActivity">
+    tools:context=".DetailedActivity"
+    android:layout_margin="20dp">
 
 
     <RadioGroup
         android:id="@+id/toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/control_switch_background_border"
         android:checkedButton="@+id/sw_filter_all"
         android:orientation="horizontal">
@@ -38,7 +39,7 @@
             android:textColor="@color/control_switch_color_selector" />
 
         <RadioButton
-            android:id="@+id/sw_filter_income"
+            android:id="@+id/sw_filter_expense"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
@@ -50,11 +51,11 @@
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/income"
+            android:text="@string/expense"
             android:textColor="@color/control_switch_color_selector" />
 
         <RadioButton
-            android:id="@+id/sw_filter_expense"
+            android:id="@+id/sw_filter_income"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
@@ -67,21 +68,23 @@
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/expense"
+            android:text="@string/income"
             android:textColor="@color/control_switch_color_selector" />
     </RadioGroup>
 
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Sample transactions" /> <!-- TODO: Kill this -->
+        android:text="Transactions"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_transactions"
         android:layout_width="match_parent"
-        android:layout_height="500dp"/> <!-- TODO: fix size -->
+        android:layout_height="fill_parent" /> <!-- TODO: fix size -->
 
 
 </LinearLayout>

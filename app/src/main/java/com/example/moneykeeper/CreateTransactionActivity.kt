@@ -11,6 +11,7 @@ import com.example.moneykeeper.utils.DBHelper
 import kotlinx.android.synthetic.main.activity_create_transaction.*
 import kotlinx.android.synthetic.main.transaction_list_item.*
 import java.util.*
+import kotlin.math.abs
 
 
 class CreateTransactionActivity : AppCompatActivity() {
@@ -63,17 +64,20 @@ class CreateTransactionActivity : AppCompatActivity() {
 
         btn_save.setOnClickListener {
 
-            val id = db.getNextId()
-            val date = et_calendar.text.toString()
-            val category = sp_category_chooser.selectedItem.toString()
-            val note = et_note.text.toString()
-            var value = et_value.text.toString().toInt()
-            if(sw_create_expense.isActivated) value = -value;
-            val transaction = Transaction(id, date, category, value, note)
+            try {
+                val id = db.getNextId()
+                val date = et_calendar.text.toString()
+                val category = sp_category_chooser.selectedItem.toString()
+                val note = et_note.text.toString()
+                var value = et_value.text.toString().toInt()
+                if(sw_create_expense.isChecked) value = -abs(value);
+                val transaction = Transaction(id, date, category, value, note)
+                db.addTransaction(transaction)
+            } finally {
+                // TODO: вернуться к первому активити без PIN CODE
+                finish()
+            }
 
-            db.addTransaction(transaction)
-            // TODO: вернуться к первому активити без PIN CODE
-            finish()
         }
 
     }
