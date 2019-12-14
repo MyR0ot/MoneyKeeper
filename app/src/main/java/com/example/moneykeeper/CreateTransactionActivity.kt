@@ -7,9 +7,11 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.moneykeeper.utils.DBHelper
 import kotlinx.android.synthetic.main.activity_create_transaction.*
 import kotlinx.android.synthetic.main.transaction_list_item.*
+import java.lang.Exception
 import java.util.*
 import kotlin.math.abs
 
@@ -73,11 +75,11 @@ class CreateTransactionActivity : AppCompatActivity() {
                 if(sw_create_expense.isChecked) value = -abs(value);
                 val transaction = Transaction(id, date, category, value, note)
                 db.addTransaction(transaction)
-            } finally {
-                // TODO: вернуться к первому активити без PIN CODE
                 finish()
+            } catch(e: Exception){
+                Toast.makeText(this, getString(R.string.create_error), Toast.LENGTH_SHORT)
+                    .show()
             }
-
         }
 
     }

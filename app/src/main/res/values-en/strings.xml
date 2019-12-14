@@ -28,5 +28,6 @@
     <string name="date">Date:</string>
     <string name="disable_passcode">Disable Pin</string>
     <string name="delete">Delete</string>
+    <string name="create_error">Input value of transaction!</string>
     <string name="transactions">Transactions</string>
 </resources>
