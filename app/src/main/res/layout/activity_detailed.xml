@@ -51,7 +51,7 @@
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/expense"
+            android:text="@string/expenses"
             android:textColor="@color/control_switch_color_selector" />
 
         <RadioButton
@@ -68,7 +68,7 @@
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/income"
+            android:text="@string/incomes"
             android:textColor="@color/control_switch_color_selector" />
     </RadioGroup>
 

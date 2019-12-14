@@ -10,7 +10,9 @@
     <string name="reenter_passcode">Re-enter Pin</string>
     <string name="setup_passcode">Setup Pin</string>
     <string name="income">Income</string>
+    <string name="incomes">Incomes</string>
     <string name="expense">Expense</string>
+    <string name="expenses">Expenses</string>
     <string name="total">Total</string>
     <string name="show_detailed">show detailed</string>
     <string name="add_transaction">add transaction</string>

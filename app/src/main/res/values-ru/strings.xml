@@ -27,4 +27,6 @@
     <string name="disable_passcode">Убрать пароль</string>
     <string name="delete">Удалить</string>
     <string name="transactions">Транзакции</string>
+    <string name="expenses">Расходы</string>
+    <string name="incomes">Доходы</string>
 </resources>
