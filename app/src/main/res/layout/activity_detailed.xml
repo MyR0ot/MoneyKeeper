@@ -84,7 +84,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_transactions"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent" /> <!-- TODO: fix size -->
+        android:layout_height="fill_parent" />
 
 
 </LinearLayout>

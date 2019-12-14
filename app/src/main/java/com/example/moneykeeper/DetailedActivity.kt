@@ -49,8 +49,16 @@ class DetailedActivity : AppCompatActivity() {
 
             override fun onDelete(item: Transaction){
                 db.deleteTransaction(item)
+
                 this@DetailedActivity.transactions = db.allTransactions
-                configureRecyclerView(this@DetailedActivity.transactions)
+                if(sw_filter_income.isChecked){
+                    configureRecyclerView(this@DetailedActivity.transactions.filter { it.value > 0 })
+                } else if(sw_filter_expense.isChecked) {
+                    configureRecyclerView(this@DetailedActivity.transactions.filter { it.value < 0 })
+                } else{
+                    configureRecyclerView(this@DetailedActivity.transactions)
+                }
+
             }
         })
     }
