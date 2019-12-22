@@ -19,7 +19,7 @@ class Transaction(val id: Int,          // идентификатор
     ) {
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
+    override fun writeToParcel(parcel: Parcel, flags: Int) { // необходимо реализовывать интерфейс Serializable и Parcelable для передачи объектов через интенты (намерения)
         parcel.writeInt(id)
         parcel.writeString(date)
         parcel.writeString(category)

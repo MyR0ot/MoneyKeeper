@@ -25,26 +25,27 @@ class MainActivity : LockActivity(), View.OnClickListener {
 
     internal lateinit var db: DBHelper
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) { // здесь точка входа в приложение
         super.onCreate(savedInstanceState)
-        loadLocale()
-        window.setFlags(
+        loadLocale() // загрузка выбранного языка (русский/ангилйский)
+        window.setFlags( // убираем иконки часов, батареи, сети и т.п.
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_main)
 
-        db = DBHelper(this@MainActivity)
+        db = DBHelper(this@MainActivity) // экземпляр класса для общения с SQLite (база данных)
 
-        configChangeLanguage()
+        configChangeLanguage() //
 
         btn_on_off.setOnClickListener(this)
         btn_change.setOnClickListener(this)
         btn_change.setText(R.string.change_passcode)
-        l_settings.visibility = View.GONE
-        updateUI()
-        loadRouting()
-        refreshData()
+
+        l_settings.visibility = View.GONE // изначально блок настроек скрыт
+        updateUI()    // перерисовка UI для корректной работы блокировщика
+        loadRouting() // инициализируем роутинг для всех нажатий по различным кнопкам
+        refreshData() // обновление данных
     }
 
     override fun onResume() {
@@ -67,7 +68,6 @@ class MainActivity : LockActivity(), View.OnClickListener {
                 startActivityForResult(it, type)
             }
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -90,18 +90,18 @@ class MainActivity : LockActivity(), View.OnClickListener {
 
 
     private fun refreshData(){
-        val transactions = db.allTransactions
-        val total = transactions.map { it.value }.sum()
-        val expenditures = transactions.filter { it.value < 0 }.map { it.value }.sum()
-        val revenue = transactions.filter { it.value > 0 }.map { it.value }.sum()
+        val transactions = db.allTransactions // обращение к БД (взятие всех транзакций)
+        val total = transactions.map { it.value }.sum() // итоговая сумма
+        val expenditures = transactions.filter { it.value < 0 }.map { it.value }.sum() // суммарные затраты
+        val revenue = transactions.filter { it.value > 0 }.map { it.value }.sum() // суммарные расходы
 
-        tv_total.text = total.toString() + "\u20BD"
+        tv_total.text = total.toString() + "\u20BD" // добавляем символ валюты рубля
         tv_expenditures.text = expenditures.toString() +"\u20BD"
         tv_revenue.text = revenue.toString() +"\u20BD"
     }
 
     private fun updateUI(): Unit {
-        if (AppLocker.getInstance().appLock.isPasscodeSet) {
+        if (AppLocker.getInstance().appLock.isPasscodeSet) { // логика взаимодействие с PIN
             btn_on_off.setText(R.string.disable_passcode)
             btn_change.isEnabled = true
         } else {
@@ -137,7 +137,8 @@ class MainActivity : LockActivity(), View.OnClickListener {
 
     }
 
-    private fun expand(v: View) {
+    // Код ниже отвечает за красивую анимацию скрытия и появления блока настроек (при клике на соответствующую кнопку)
+    private fun expand(v: View) { // анимированное появление
         val matchParentMeasureSpec =
             View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
         val wrapContentMeasureSpec =
@@ -167,7 +168,7 @@ class MainActivity : LockActivity(), View.OnClickListener {
         v.startAnimation(a)
     }
 
-    private fun collapse(v: View) {
+    private fun collapse(v: View) { // анимированное исчезновение
         val initialHeight = v.measuredHeight
 
         val a = object : Animation() {
@@ -195,9 +196,9 @@ class MainActivity : LockActivity(), View.OnClickListener {
     private fun configChangeLanguage(): Unit {
         val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
         if(currentLocale.language == "ru"){
-            iv_language_icon.setImageResource(R.drawable.ru)
+            iv_language_icon.setImageResource(R.drawable.ru)  // изменение иконок флага
         } else {
-            iv_language_icon.setImageResource(R.drawable.us)
+            iv_language_icon.setImageResource(R.drawable.us) // изменение иконок флага
         }
 
         iv_language_icon.setOnClickListener{ changeLanguage() }

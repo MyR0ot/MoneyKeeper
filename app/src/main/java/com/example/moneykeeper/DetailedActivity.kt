@@ -15,15 +15,15 @@ class DetailedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN) // убираем иконку батареи, сети, времени и прочего...
         setContentView(R.layout.activity_detailed)
 
-        db = DBHelper(this@DetailedActivity)
-        transactions = db.allTransactions
-        configureRecyclerView(transactions)
+        db = DBHelper(this@DetailedActivity) // создаем экземпляр, отвечающий за взаимодействие с БД
+        transactions = db.allTransactions // все транзакции, полученные из бд
+        configureRecyclerView(transactions) // настройка RecyclerView
 
 
-        toggle.setOnCheckedChangeListener { group, checkedId ->
+        toggle.setOnCheckedChangeListener { group, checkedId -> // логика работы с тройной кнопков фильтра (все/траты/доходы)
             run {
                 if (checkedId == sw_filter_all.id) {
                     configureRecyclerView(transactions)
@@ -46,11 +46,11 @@ class DetailedActivity : AppCompatActivity() {
             override fun onItemClicked(item: Transaction) {
                 // TODO: Click by transaction
             }
+            override fun onDelete(item: Transaction){ // запрос на удаление транзакций
+                // TODO: Получить подтверждение ???
+                db.deleteTransaction(item) // удаление транзакции из БД
 
-            override fun onDelete(item: Transaction){
-                db.deleteTransaction(item)
-
-                this@DetailedActivity.transactions = db.allTransactions
+                this@DetailedActivity.transactions = db.allTransactions // пересоздание RecyclerView, т.к. кол-во транзакций уменьшилось
                 if(sw_filter_income.isChecked){
                     configureRecyclerView(this@DetailedActivity.transactions.filter { it.value > 0 })
                 } else if(sw_filter_expense.isChecked) {

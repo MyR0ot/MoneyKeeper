@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.moneykeeper.utils.DBHelper
 import kotlinx.android.synthetic.main.activity_create_transaction.*
-import kotlinx.android.synthetic.main.transaction_list_item.*
 import java.lang.Exception
 import java.util.*
 import kotlin.math.abs
@@ -20,17 +19,17 @@ class CreateTransactionActivity : AppCompatActivity() {
 
 
     internal lateinit var db: DBHelper
-    private val categories = arrayOf("другие", "еда", "транспорт", "здоровье", "путешествия", "подарки", "отдых", "face palm")
+    private val categories = arrayOf("другие", "еда", "транспорт", "здоровье", "путешествия", "подарки", "отдых", "face palm") // список категорий транзакций
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN) // убираем иконки батареи, часов, сети и прочее
         setContentView(R.layout.activity_create_transaction)
 
-        db = DBHelper(this@CreateTransactionActivity)
-        initRouting()
-        initCalendar()
-        initSpinner()
+        db = DBHelper(this@CreateTransactionActivity) // подключили БД
+        initRouting() // инициализировали роутинг
+        initCalendar() // логика календаря
+        initSpinner() // логика работы выпадающего списка с категориями транзакций
     }
 
     private fun getMonthName(id: Int): String { // TODO: локализовать
@@ -72,19 +71,19 @@ class CreateTransactionActivity : AppCompatActivity() {
                 val category = sp_category_chooser.selectedItem.toString()
                 val note = et_note.text.toString()
                 var value = et_value.text.toString().toInt()
-                if(sw_create_expense.isChecked) value = -abs(value);
+                if(sw_create_expense.isChecked) value = -abs(value); // если выбран флаг "траты", то значение транзакций идет в бд со знаком минус
                 val transaction = Transaction(id, date, category, value, note)
-                db.addTransaction(transaction)
+                db.addTransaction(transaction) // транзакция добавляется в БД
                 finish()
             } catch(e: Exception){
                 Toast.makeText(this, getString(R.string.create_error), Toast.LENGTH_SHORT)
-                    .show()
+                    .show() // в случае булщита всплывает сообщение с ошибкой
             }
         }
 
     }
 
-    private fun initSpinner() {
+    private fun initSpinner() { // настройка выпадающего списка выбора категории при создании транзакции
         val adapter = ArrayAdapter<String>(
             this@CreateTransactionActivity,
             android.R.layout.simple_spinner_item,
@@ -97,7 +96,8 @@ class CreateTransactionActivity : AppCompatActivity() {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View,
                 position: Int, id: Long
-            ) { }
+            ) {
+            }
 
             override fun onNothingSelected(arg0: AdapterView<*>) {
                 sp_category_chooser.setSelection(0)
@@ -106,7 +106,7 @@ class CreateTransactionActivity : AppCompatActivity() {
     }
 
     private fun initCalendar() {
-        et_calendar.text = getToday()
+        et_calendar.text = getToday() // изначально ставим дату сегодня
         et_calendar.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)

@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.abs
 
+
+// Класс для кооректной работы RecyclerView
 class TransactionsAdapter(var items: List<Transaction>, val callback: Callback):RecyclerView.Adapter<TransactionsAdapter.TransactionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -31,16 +33,16 @@ class TransactionsAdapter(var items: List<Transaction>, val callback: Callback):
 
 
         fun bind(transaction: Transaction) {
-            if(transaction.value > 0) value.setTextColor(Color.rgb(0,186,0))
-            else value.setTextColor(Color.rgb(237,0,0))
+            if(transaction.value > 0) value.setTextColor(Color.rgb(0,186,0))// если доход, то текст зеленый
+            else value.setTextColor(Color.rgb(237,0,0)) // если затраты, то текст красный
 
             date.text = transaction.date
             category.text = transaction.category
-            value.text = abs(transaction.value).toString()+"\u20BD"
+            value.text = abs(transaction.value).toString()+"\u20BD" // добавляем символ валюты рубля
             note.text = transaction.note
 
             btnDelete.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) callback.onDelete(transaction)
+                if (adapterPosition != RecyclerView.NO_POSITION) callback.onDelete(transaction) // когда кликаем "удалить" вызвывается функция обратного вызова
             }
 
 
@@ -48,7 +50,6 @@ class TransactionsAdapter(var items: List<Transaction>, val callback: Callback):
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(transaction)
             }
         }
-
     }
 
     interface Callback {
